@@ -140,6 +140,11 @@ apt_mails: []
 # Set this value to "true" to get emails only on errors. Default
 # is to always send a mail if Unattended-Upgrade::Mail is set
 apt_unattended_upgrades_notify_error_only: yes
+# By default "root" will be used as a sender, which can lead to a
+# rejection of the email due to missing or wrong from field.
+# Set this value to "user@example.com" or more descriptive to
+# "Unattended-upgrades on Hostname <user@example.com>"
+apt_unattended_upgrades_sender: "Unattended-upgrades on {{ inventory_hostname }} <{{ ansible_fqdn }}@example.com>"
 # Do automatic removal of new unused dependencies after the upgrade
 # (equivalent to apt-get autoremove)
 apt_unattended_upgrades_autoremove: yes

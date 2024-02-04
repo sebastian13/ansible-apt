@@ -49,6 +49,12 @@ Unattended-Upgrade::Mail "{{ apt_mails | join(',') }}";
 // is to always send a mail if Unattended-Upgrade::Mail is set
 Unattended-Upgrade::MailOnlyOnError "{{ apt_unattended_upgrades_notify_error_only | to_nice_json }}";
 
+// By default "root" will be used as a sender, which can lead to a
+// rejection of the email due to missing or wrong from field.
+// Set this value to "user@example.com" or more descriptive to
+// "Unattended-upgrades on Hostname <user@example.com>"
+Unattended-Upgrade::Sender "{{ apt_unattended_upgrades_sender | default ('root') }}";
+
 // Do automatic removal of new unused dependencies after the upgrade
 // (equivalent to apt-get autoremove)
 Unattended-Upgrade::Remove-Unused-Dependencies "{{ apt_unattended_upgrades_autoremove | to_nice_json }}";
