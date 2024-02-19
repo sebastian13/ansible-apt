@@ -80,3 +80,9 @@ Unattended-Upgrade::SyslogEnable "{{ apt_unattended_upgrades_syslog_enable | to_
 
 // Specify syslog facility. Default is daemon
 Unattended-Upgrade::SyslogFacility "{{ apt_unattended_upgrades_syslog_facility }}";
+
+{% if apt_dpkg_options %}
+// Provide dpkg command-line options. E.g. to force conffile handling in dpkg
+// like adding '--force-confold' to keep the old configuration files.
+Dpkg::Options {"{{ apt_dpkg_options | join(';') }}"};
+{% endif %}

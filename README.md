@@ -210,6 +210,11 @@ apt_aptitude_solution_cost: []
 #     priority: 1001
 apt_preferences: []
 
+# Provide dpkg command-line options. E.g. to force conffile handling in dpkg
+# like adding '--force-confold' to keep the old configuration files.
+apt_dpkg_options:
+  - "--force-confold"
+
 ```
 
 ## Handlers
