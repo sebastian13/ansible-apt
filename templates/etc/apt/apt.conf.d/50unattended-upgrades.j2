@@ -1,14 +1,20 @@
 // {{ ansible_managed }}
 
-// Unattended-Upgrade::Origins-Pattern controls which packages are
-// upgraded. Replace Allowed-Origins
+
+// "Unattended-Upgrade::Allowed-Origins" and
+// "Unattended-Upgrade::Origins-Pattern" control which packages get upgarded
+
+// Origins-Pattern allows you to give a list of (glob-style) patterns to match against
+// Use "origin=*" to allow all while respecting apt-pinning.
 Unattended-Upgrade::Origins-Pattern {
 {% for origin in apt_unattended_upgrades_origins %}
   "{{ origin }}";
 {% endfor %}
 };
 
-// Automatically upgrade packages from these (origin:archive) pairs
+// Only packages from this origin:archive pair will be installed.
+// Variable substitution is supported for ${distro_id} that contains the output of lsb_release -i and ${distro_codename} that contains the output of lsb_release -c.
+// (Default: "${distro_id}:${distro_codename}-security";)
 Unattended-Upgrade::Allowed-Origins {
 {% for allowed in apt_unattended_upgrades_allowed %}
   "{{ allowed }}";

@@ -118,11 +118,12 @@ apt_auto_clean_interval: 0
 
 # enable unattended-upgrades
 apt_unattended_upgrades: yes
-# list of origins patterns to control which packages are upgraded
-# replaces allowed-origins, kept for compatibility
+# "Unattended-Upgrade::Allowed-Origins" and "Unattended-Upgrade::Origins-Pattern" control which packages get upgarded
+# Origins-Pattern allows you to give a list of (glob-style) patterns to match against
+# Use "origin=*" to allow all while respecting apt-pinning.
 apt_unattended_upgrades_origins: []
-# List of allowed-origins, default value kept for compatibility
-# set to null to use origins-pattern
+# Allowed-origins allows you to give a list of origin:archive pairs.
+# Set to null to use origins-pattern. (Default: "${distro_id}:${distro_codename}-security";)
 apt_unattended_upgrades_allowed:
 - ${distro_id}:${distro_codename}-security
 # list of packages to not update (regexp are supported)

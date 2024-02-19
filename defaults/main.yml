@@ -65,8 +65,7 @@ apt_auto_clean_interval: 0
 
 # enable unattended-upgrades
 apt_unattended_upgrades: yes
-# list of origins patterns to control which packages are upgraded
-# replaces allowed-origins, kept for compatibility
+# List of origins patterns to control which packages are upgraded
 apt_unattended_upgrades_origins: []
 # List of allowed-origins, default value kept for compatibility
 # set to null to use origins-pattern
